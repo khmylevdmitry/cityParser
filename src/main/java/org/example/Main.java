@@ -2,10 +2,7 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Comparator;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,6 +19,22 @@ public class Main {
 
         findCityWithMaxPopulation(cities);
 
+        Map<String, Integer> cityCountByRegion = countCitiesByRegion(cities);
+
+        for (Map.Entry<String, Integer> entry : cityCountByRegion.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+
+    }
+
+    public static Map<String, Integer> countCitiesByRegion(List<City> cities) {
+        Map<String, Integer> cityCountByRegion = new HashMap<>();
+        for (City city : cities) {
+            String region = city.getRegion();
+            cityCountByRegion.put(region, cityCountByRegion.getOrDefault(region, 0) + 1);
+        }
+
+        return cityCountByRegion;
     }
 
     public static void findCityWithMaxPopulation(List<City> cities) {
