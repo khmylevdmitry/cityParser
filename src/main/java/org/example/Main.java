@@ -19,6 +19,24 @@ public class Main {
 
         sortByFederalDistrictAndCityNameDescending(cities);
         printCities(cities);
+
+        findCityWithMaxPopulation(cities);
+
+    }
+
+    public static void findCityWithMaxPopulation(List<City> cities) {
+
+        City[] citiesArray = cities.toArray(new City[cities.size()]);
+        int maxPopulation = 0;
+        int maxPopulationIndex = -1;
+
+        for (int i = 0; i < citiesArray.length; i++) {
+            if (citiesArray[i].getPopulation() > maxPopulation) {
+                maxPopulation = citiesArray[i].getPopulation();
+                maxPopulationIndex = i;
+            }
+        }
+            System.out.println("[" + maxPopulationIndex + "] = " + maxPopulation);
     }
 
     public static void sortByCityNameDescending(List<City> cities) {
